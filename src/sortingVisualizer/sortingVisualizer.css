@@ -1,12 +1,19 @@
 * {
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Helvetica', 'Arial', sans-serif;
     font-size: 1em;
   }
+
+.app-container {
+    display: flex;
+    position:relative;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
 .array-container {
     align-items: center;
     display: flex;
-    margin-top: auto;
+    margin-top: 20px;
 }
 
 .array-bar {
@@ -15,10 +22,13 @@
     margin: 0.15%;
 }
 
-.visualizer-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+.navbar{
+    height: 50px;
+    background-color: grey;
+}
+
+.navbar > button{
+    margin: 10px;
 }
 
 @media (min-width: 700px) {
