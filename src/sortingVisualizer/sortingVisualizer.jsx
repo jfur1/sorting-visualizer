@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './sortingVisualizer.css';
+import { getMergeSortAnimations } from '../algorithms/mergeSort';
 
 // Change this value for the speed of the animations.
-const ANIMATION_SPEED_MS = 1;
+const ANIMATION_SPEED_MS = 3;
 
 // Change this value for the number of bars (value) in the array.
 const NUMBER_OF_ARRAY_BARS = 100;
@@ -33,6 +34,8 @@ export default function SortingVisualizer(props){
         }
         setArray(arr);
     }
+
+    // ---------------------------- Animations ------------------------------
 
     function resetArrayColor(){
         const arrayBars = containerRef.current.children;
@@ -104,27 +107,51 @@ export default function SortingVisualizer(props){
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
+    // --------------- Sorting Functions -------------------------
+
+    function mergeSort(){
+        const animations = getMergeSortAnimations(array);
+        animateArray(animations);
+    }
+
+    function quickSort(){
+
+    }
+
+    function bubbleSort(){
+
+    }
+
+    function insertionSort(){
+
+    }
+
+    function heapSort(){
+        
+    }
+
+    // ----------------------------------------------------------------- //
+
     return (
         <div className="app-container">
             <div className="navbar">
                 <button onClick={initArray}>New Array</button>
-                <button>Merge Sort</button>
-                <button>Quick Sort</button>
+                <button onClick={mergeSort}>Merge Sort</button>
             </div>
             <div className = "array-container" ref={containerRef}>
                 {array.map((value, idx) => (
                     <div
                         className="array-bar"
-                        key={idx}
                         style={{
                             // Value for height is half of the array value
                             height: `${value * 0.5 }vmin`,
                             // Width of one bar is 1% of all the bars' widths 
                             width: `${100 / NUMBER_OF_ARRAY_BARS}vw`,
-                        }}></div>
-                ))}
+                        }}
+                        key={idx}
+                    ></div>
+                ))}            
             </div>
-            <footer id="footer"></footer>
         </div>
     );
 }
