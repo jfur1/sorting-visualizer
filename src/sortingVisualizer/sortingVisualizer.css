@@ -1,12 +1,28 @@
+* {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1em;
+  }
 
 .array-container {
-  position: absolute;
-  left: 100px;
-  /* top: 100px; */
+    align-items: center;
+    display: flex;
+    margin-top: auto;
 }
 
 .array-bar {
-  width: 2px;
-  display: inline-block;
-  margin: 0 1px;
+    background-color: rgb(45, 93, 213);
+    border-radius: 0.5em;
+    margin: 0.15%;
+}
+
+.visualizer-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+@media (min-width: 700px) {
+    .app-footer {
+        justify-content: center;
+    }
 }
