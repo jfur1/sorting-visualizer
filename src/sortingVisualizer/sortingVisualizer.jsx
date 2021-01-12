@@ -30,7 +30,7 @@ export default function SortingVisualizer(props){
         const arr = [];
         for(let i = 0; i < NUMBER_OF_ARRAY_BARS; i++){
             // Starting from value 5 so bars will be visible
-            arr.push(randomIntFromInterval(5, 150));
+            arr.push(randomIntFromInterval(5, 125));
         }
         setArray(arr);
     }
@@ -50,7 +50,7 @@ export default function SortingVisualizer(props){
         for(let i = 0; i < arrayBars.length; i++){
             const arrayBarStyle = arrayBars[i].style;
             setTimeout(
-                () => (arrayBarStyle.backgroundColor = 'green'),
+                () => (arrayBarStyle.backgroundColor = 'LimeGreen'),
                 i * ANIMATION_SPEED_MS,
             );
         }
@@ -65,7 +65,7 @@ export default function SortingVisualizer(props){
         const arrayBars = containerRef.current.children;
         const arrayBarStyle = arrayBars[index].style;
         setTimeout(() => {
-            arrayBarStyle.backgroundColor = 'turquoise';
+            arrayBarStyle.backgroundColor = 'OrangeRed';
         }, ANIMATION_SPEED_MS);
         setTimeout(() => {
             arrayBarStyle.backgroundColor = '';
@@ -134,9 +134,57 @@ export default function SortingVisualizer(props){
 
     return (
         <div className="app-container">
-            <div className="navbar">
-                <button onClick={initArray}>New Array</button>
-                <button onClick={mergeSort}>Merge Sort</button>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
+                <a className="navbar-brand" href="https://jfur1.github.io/sorting-visualizer">
+                    <b>Sorting Visualizer</b>
+                </a>
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <a
+                                className="nav-link"
+                                href="http://www.github.com/jfur1/sorting-visualizer">
+                                {' '}
+                                Sorting Visualizer code{' '}
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="https://github.com/jfur1">
+                                Check Out Other Cool Projects
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="programButtons">
+                <button
+                    type="button"
+                    className="btn btn-danger mr-1"
+                    onClick={initArray}>
+                    New Array
+                </button>
+                <button
+                    type="button"
+                    className="btn btn-primary mr-1"
+                    onClick={mergeSort}>
+                    Merge Sort
+                </button>
+                <button
+                    type="button"
+                    className="btn btn-primary mr-1"
+                    onClick={quickSort}>
+                    Quick Sort
+                </button>
             </div>
             <div className = "array-container" ref={containerRef}>
                 {array.map((value, idx) => (

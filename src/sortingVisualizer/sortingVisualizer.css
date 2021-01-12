@@ -1,5 +1,5 @@
 * {
-    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 1em;
   }
 
@@ -17,20 +17,23 @@
 }
 
 .array-bar {
-    background-color: rgb(45, 93, 213);
+    background-color: MediumSlateBlue;
     border-radius: 0.5em;
     margin: 0.15%;
 }
 
 .navbar{
-    height: 50px;
-    background-color: grey;
+    height: 80px;
+    background-color: #333;
 }
 
-.navbar > button{
-    margin: 10px;
+#programButtons{
+    margin: 20px;
 }
-
+#programButtons > button{
+    margin: 0 20px;
+}
+  
 @media (min-width: 700px) {
     .app-footer {
         justify-content: center;
