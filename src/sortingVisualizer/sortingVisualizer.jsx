@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './sortingVisualizer.css';
 import { getMergeSortAnimations } from '../algorithms/mergeSort';
+import { getQuickSortAnimations } from '../algorithms/quickSort';
+import { getInsertionSortAnimations } from '../algorithms/insertionSort';
 
 // Change this value for the speed of the animations.
 const ANIMATION_SPEED_MS = 3;
@@ -115,15 +117,17 @@ export default function SortingVisualizer(props){
     }
 
     function quickSort(){
-
+        const animations = getQuickSortAnimations(array);
+        animateArray(animations);
     }
 
     function bubbleSort(){
-
+  
     }
 
     function insertionSort(){
-
+        const animations = getInsertionSortAnimations(array);
+        animateArray(animations);  
     }
 
     function heapSort(){
@@ -184,6 +188,24 @@ export default function SortingVisualizer(props){
                     className="btn btn-primary mr-1"
                     onClick={quickSort}>
                     Quick Sort
+                </button>
+                <button
+                    type="button"
+                    className="btn btn-primary mr-1"
+                    onClick={bubbleSort}>
+                    Bubble Sort
+                </button>
+                <button
+                    type="button"
+                    className="btn btn-primary mr-1"
+                    onClick={heapSort}>
+                    Heap Sort
+                </button>
+                <button
+                    type="button"
+                    className="btn btn-primary mr-1"
+                    onClick={insertionSort}>
+                    Insertion Sort
                 </button>
             </div>
             <div className = "array-container" ref={containerRef}>

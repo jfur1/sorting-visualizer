@@ -5,7 +5,7 @@ export function getMergeSortAnimations(arr){
     const animations = [];
     mergeSortHelper(copy, tmpAux, 0, len-1, animations);
     return animations;
-}   
+}
 
 function mergeSortHelper(arr, aux, left, right, animations){
     if(right <= left) return;
