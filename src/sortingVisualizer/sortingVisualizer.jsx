@@ -4,6 +4,7 @@ import { getMergeSortAnimations } from '../algorithms/mergeSort';
 import { getQuickSortAnimations } from '../algorithms/quickSort';
 import { getInsertionSortAnimations } from '../algorithms/insertionSort';
 import { getBubbleSortAnimations } from '../algorithms/bubbleSort';
+import { getHeapSortAnimations } from '../algorithms/heapSort';
 
 // Change this value for the speed of the animations.
 const ANIMATION_SPEED_MS = 3;
@@ -133,7 +134,8 @@ export default function SortingVisualizer(props){
     }
 
     function heapSort(){
-        
+        const animations = getHeapSortAnimations(array);
+        animateArray(animations);   
     }
 
     // ----------------------------------------------------------------- //

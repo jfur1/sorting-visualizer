@@ -14,7 +14,7 @@ export function getInsertionSortAnimations(arr) {
     return animations;
   }  
   
-  function swap(arr, index1, index2) {
+function swap(arr, index1, index2) {
     const temp = arr[index1];
     arr[index1] = arr[index2];
     arr[index2] = temp;
