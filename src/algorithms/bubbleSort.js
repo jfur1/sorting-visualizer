@@ -1,11 +1,6 @@
 export function getBubbleSortAnimations(arr){
     const copy = [...arr];
     const animations = [];
-    bubbleSortHelper(copy, animations);
-    return animations;
-}
-
-function bubbleSortHelper(arr, animations){
     const n = arr.length;
     var swapped;
     // Traverse the entire array
@@ -13,17 +8,19 @@ function bubbleSortHelper(arr, animations){
         swapped = false;
         // Last i elements are already in place
         for(let j = 0; j < n-i-1; j++){
+            animations.push([[j, j + 1], false]);
             // If an element is found that is greater than the element following, then swap
-            if(arr[j] > arr[j+1]){
-                animations.push([[j, arr[j+1]], true]);
-                animations.push([[j+1, arr[j]], true]);
-                swap(arr, j, j+1);
+            if(copy[j] > copy[j+1]){
+                animations.push([[j, copy[j+1]], true]);
+                animations.push([[j+1, copy[j]], true]);
+                swap(copy, j, j+1);
                 swapped = true;
             }
         }
         // If no 2 elements were swapped in the inner loop, then break
         if(swapped === false) break;
     }
+    return animations;
 }
 
 function swap(arr, index1, index2) {
