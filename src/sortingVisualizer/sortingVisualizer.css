@@ -34,6 +34,13 @@
     margin: 3px 10px;
 }
 
+#algoDescription{
+    text-align: center;
+    color: #334444;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
 /* ------------------------- Dropdown Styling ------------------------------ */
 
 .dropdown {

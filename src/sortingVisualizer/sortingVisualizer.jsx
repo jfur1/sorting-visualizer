@@ -28,6 +28,7 @@ export default function SortingVisualizer(props){
     function initArray(){
         if(isRunning) return;
         if(isSorted) resetArrayColor();
+        updateAlgoDescription("Start");
         setIsSorted(false);
         const arr = [];
         for(let i = 0; i < NUMBER_OF_ARRAY_BARS; i++){
@@ -128,29 +129,54 @@ export default function SortingVisualizer(props){
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
+    function updateAlgoDescription(algo){
+        if(isRunning) return;
+        if(algo === "mergeSort"){
+            document.getElementById('algoDescription').innerHTML = `Merge Sort is a <i><b>divide and conquer</b></i> algorithm and <i><b>does guarantee</b></i> stablity!`;
+          }
+          else if(algo === "quickSort"){
+            document.getElementById('algoDescription').innerHTML = `Quick Sort is a <i><b>divide and conquer</b></i> algorithm and is performed <i><b>in place</b></i>!`;
+          }
+          else if(algo === "bubbleSort"){
+            document.getElementById('algoDescription').innerHTML = `Bubble Sort the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in wrong order!`;
+          }
+          else if(algo === "heapSort"){
+            document.getElementById('algoDescription').innerHTML = `Heap Sort is a <i><b> comparison-based</b></i> sorting algorithm based on the <i><b> binary heap </b></i> data structure!`;
+          } else if(algo === "insertionSort"){
+            document.getElementById('algoDescription').innerHTML = `Insertion Sort is an <i><b>in place </b></i> algorithm and <i><b>does guarantee </b></i> stability!`;
+          }   else{
+            document.getElementById('algoDescription').innerHTML = "Select a sorting algorithm to visualize!";
+          }
+    }
+
     // --------------- Sorting Functions -------------------------
 
     function mergeSort(){
+        updateAlgoDescription("mergeSort");
         const animations = getMergeSortAnimations(array);
         animateArray(animations);
     }
 
     function quickSort(){
+        updateAlgoDescription("quickSort");
         const animations = getQuickSortAnimations(array);
         animateArray(animations);
     }
 
     function bubbleSort(){
+        updateAlgoDescription("bubbleSort");
         const animations = getBubbleSortAnimations(array);
         animateArray(animations);  
     }
 
     function insertionSort(){
+        updateAlgoDescription("insertionSort");
         const animations = getInsertionSortAnimations(array);
         animateArray(animations);  
     }
 
     function heapSort(){
+        updateAlgoDescription("heapSort");
         const animations = getHeapSortAnimations(array);
         animateArray(animations);   
     }
@@ -225,8 +251,9 @@ export default function SortingVisualizer(props){
                         <a href="#" id="animate-medium" onClick={() => toggleSpeed("Medium")}>Medium</a>
                         <a href="#" id="animate-fast" onClick={() => toggleSpeed("Fast")}>Fast</a>
                 </div>
-          </div>
             </div>
+        </div>
+          <div id="algoDescription"></div>
             <div className = "array-container" ref={containerRef}>
                 {array.map((value, idx) => (
                     <div
