@@ -6,9 +6,6 @@ import { getInsertionSortAnimations } from '../algorithms/insertionSort';
 import { getBubbleSortAnimations } from '../algorithms/bubbleSort';
 import { getHeapSortAnimations } from '../algorithms/heapSort';
 
-// Change this value for the speed of the animations.
-const ANIMATION_SPEED_MS = 3;
-
 // Change this value for the number of bars (value) in the array.
 const NUMBER_OF_ARRAY_BARS = 100;
 
@@ -21,6 +18,7 @@ export default function SortingVisualizer(props){
     const [array, setArray] = useState([]);
     const [isRunning, setIsRunning] = useState(false);
     const [isSorted, setIsSorted] = useState(false);
+    const [animationSpeed, setAnimationSpeed] = useState(3);
     // Use ref to store array bars for animating
     const containerRef = useRef(null);
 
@@ -39,6 +37,25 @@ export default function SortingVisualizer(props){
         setArray(arr);
     }
 
+    function toggleDropdown(){
+        if(isRunning) return;
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    function toggleSpeed(speed){
+        if(isRunning) return;
+        toggleDropdown();
+        setAnimationSpeed(speed);
+        document.getElementById("animation-speed").innerHTML = `Animation Speed: \n${speed}`;
+        if(speed === "Slow"){
+            setAnimationSpeed(5);
+          } else if(speed === "Medium"){
+            setAnimationSpeed(3);
+          } else{
+            setAnimationSpeed(1.5);
+          }
+    }
+
     // ---------------------------- Animations ------------------------------
 
     function resetArrayColor(){
@@ -55,13 +72,13 @@ export default function SortingVisualizer(props){
             const arrayBarStyle = arrayBars[i].style;
             setTimeout(
                 () => (arrayBarStyle.backgroundColor = 'LimeGreen'),
-                i * ANIMATION_SPEED_MS,
+                i * animationSpeed,
             );
         }
         setTimeout(() => {
             setIsSorted(true);
             setIsRunning(false);
-        }, arrayBars.length * ANIMATION_SPEED_MS
+        }, arrayBars.length * animationSpeed
         );
     }
 
@@ -70,10 +87,10 @@ export default function SortingVisualizer(props){
         const arrayBarStyle = arrayBars[index].style;
         setTimeout(() => {
             arrayBarStyle.backgroundColor = 'OrangeRed';
-        }, ANIMATION_SPEED_MS);
+        }, animationSpeed);
         setTimeout(() => {
             arrayBarStyle.backgroundColor = '';
-        }, 2 * ANIMATION_SPEED_MS)
+        }, 2 * animationSpeed)
     }
 
     function animateArray(animations){
@@ -98,11 +115,11 @@ export default function SortingVisualizer(props){
                         return newArr;
                     });
                 }
-            },  index * ANIMATION_SPEED_MS);
+            },  index * animationSpeed);
         });
         setTimeout(() => {
             animateSortedArray();
-        }, animations.length * ANIMATION_SPEED_MS);
+        }, animations.length * animationSpeed);
     }
 
     // From https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
@@ -146,16 +163,6 @@ export default function SortingVisualizer(props){
                 <a className="navbar-brand" href="https://jfur1.github.io/sorting-visualizer">
                     <b>Sorting Visualizer</b>
                 </a>
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
@@ -211,6 +218,14 @@ export default function SortingVisualizer(props){
                     onClick={insertionSort}>
                     Insertion Sort
                 </button>
+                <div class="dropdown">
+                    <button id="animation-speed" onClick={() => toggleDropdown()} class="dropbtn">Animation Speed: Medium</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="#" id="animate-slow" onClick={() => toggleSpeed("Slow")}>Slow</a>
+                        <a href="#" id="animate-medium" onClick={() => toggleSpeed("Medium")}>Medium</a>
+                        <a href="#" id="animate-fast" onClick={() => toggleSpeed("Fast")}>Fast</a>
+                </div>
+          </div>
             </div>
             <div className = "array-container" ref={containerRef}>
                 {array.map((value, idx) => (
