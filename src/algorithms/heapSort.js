@@ -6,25 +6,26 @@ export function getHeapSortAnimations(arr){
     array_length = copy.length;
 
     for (var i = Math.floor(array_length / 2); i >= 0; i -= 1)      {
-        heap_root(input, i);
+        heap_root(copy, i, animations);
       }
 
-    for (i = input.length - 1; i > 0; i--) {
-        swap(input, 0, i);
+    for (i = copy.length - 1; i > 0; i--) {
+        animations.push([[0, copy[i]], true]);
+        animations.push([[i, copy[0]], true]);
+        swap(copy, 0, i);
         array_length--;
       
       
-        heap_root(input, 0);
+        heap_root(copy, 0, animations);
     }
     return animations;
 }
 
-function heap_root(arr, root_index){
+function heap_root(arr, root_index, animations){
     var left = 2 * root_index + 1;
     var right = 2 * root_index + 2;
     var max = root_index;
-    animations.push([right, copy[left], false]);
-    animations.push([left, copy[right], false]);
+
     if (left < array_length && arr[left] > arr[max]) {
         max = left;
     }
@@ -33,11 +34,11 @@ function heap_root(arr, root_index){
         max = right;
     }
 
-    if (max != i) {
-        animations.push([i, copy[max], true]);
-        animations.push([max, copy[i], true]);
-        swap(arr, i, max);
-        heap_root(arr, max);
+    if (max != root_index) {
+        animations.push([[root_index, arr[max]], true]);
+        animations.push([[max, arr[root_index]], true]);
+        swap(arr, root_index, max);
+        heap_root(arr, max, animations);
     }
 }
 
