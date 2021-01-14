@@ -34,7 +34,7 @@ function heap_root(arr, root_index, animations){
         max = right;
     }
 
-    if (max != root_index) {
+    if (max !== root_index) {
         animations.push([[root_index, arr[max]], true]);
         animations.push([[max, arr[root_index]], true]);
         swap(arr, root_index, max);
