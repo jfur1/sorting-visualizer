@@ -27,3 +27,6 @@ setupTests.js
 reportWebVitals.js
 
 package-lock.json
+package.json
+.eslintcache
+index.html
